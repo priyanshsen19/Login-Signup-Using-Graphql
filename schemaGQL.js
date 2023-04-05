@@ -1,5 +1,5 @@
 
-const gql = require('graphql-tag');
+const gql =  require('graphql-tag');
 
 const typeDefs = gql`
 type Query{
@@ -9,30 +9,32 @@ type Query{
     itweet(by:ID!):[Tweet]
   } 
 type User {
-    _id:ID!
-    firstName:String
-    lastName:String
-    email:String
-    password:String
+    _id:ID
+    firstName:String!
+    lastName:String!
+    email:String!
+    password:String!
     tweets:[Tweet]
 }
 type Tweet{
-    text:String
-    by:ID
+    text:String!
+    by:ID!
 }
 
 type Token{
-    token:String
+    token:String!
 }
 
 type Mutation{
     signupUser(userNew:UserInput!):User
-    signinUser(userSign:UserSigninInput!):Token
+    signinUser(userSignin:UserSigninInput!):Token
+    createTweet(text:String!):String
 }
+
 input UserInput{
-    firstName:String!,
-    lastName:String!,
-    email:String!,
+    firstName:String!
+    lastName:String!
+    email:String!
     password:String!
 }
 input UserSigninInput{
